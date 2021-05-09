@@ -13,3 +13,27 @@ Dungeon Quest is released under the GNU General Public Licence V.3. Please see [
 ## Authors
 
 - Grzegorz Ciołek -- [@Grzegorzorzorz](https://github.com/Grzegorzorzorz)
+
+## Installation
+
+### Quick method
+
+`git clone https://github.com/Grzegorzorzorz/text-dungeon && cd ./text-dungeon && make`
+
+### Less quick method
+
+Clone the repository:
+
+`git clone https://github.com/Grzegorzorzorz/text-dungeon`
+
+Change directory into it:
+
+`cd ./text-dungeon`
+
+Run GNU Make to compile:
+
+`make`
+
+---
+
+To start the game, run `bin/text-dungeon.elf`
