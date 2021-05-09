@@ -21,9 +21,13 @@ namespace Commands {
     } else if (command.substr(0, 7) == "LICENSE") {
       Commands::license();
       return 0;
-    } else if (command.substr(0,4) == "MOVE") {
+    } else if (command.substr(0, 4) == "MOVE") {
       Commands::move(player, command);
       return 0;
+    } else if (command.substr(0, 7) == "DESCEND") {
+      Commands::descend(player, command);
+    } else if (command.substr(0, 6) == "ASCEND") {
+      Commands::ascend(player, command);
     } else {
       std::cout << "Command not recognised." << std::endl;
       return 1;

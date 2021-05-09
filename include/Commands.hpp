@@ -8,6 +8,8 @@
 namespace Commands {
   int parser(std::string, Player::Player&);
 
+  int ascend(Player::Player&, std::string);
+  int descend(Player::Player&, std::string);
   int exit();
   int license();
   int map(Player::Player);
