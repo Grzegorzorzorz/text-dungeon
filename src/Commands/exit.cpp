@@ -5,7 +5,7 @@
 #include <string>
 
 namespace Commands {
-  int exit() {
+  int exit(Player::Player&, std::string) {
     std::string response;
     std::cout << "Really quit? (y/N) > ";
     std::getline(std::cin, response);
