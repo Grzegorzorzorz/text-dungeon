@@ -3,9 +3,10 @@
 #include "Prompt.hpp"
 
 #include <iostream>
+#include <string>
 
 namespace Commands {
-  int map(Player::Player player) {
+  int map(Player::Player &player, std::string) {
     Prompt::firstUsage("MAP");
     std::cout << "\nFloor " << player.floor + 1 << ":\n";
     for (int y = 0; y < 8; y++) {

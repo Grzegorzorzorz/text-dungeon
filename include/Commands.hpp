@@ -10,9 +10,9 @@ namespace Commands {
 
   int ascend(Player::Player&, std::string);
   int descend(Player::Player&, std::string);
-  int exit();
-  int license();
-  int map(Player::Player);
+  int exit(Player::Player&, std::string);
+  int license(Player::Player&, std::string);
+  int map(Player::Player&, std::string);
   int move(Player::Player&, std::string);
 }
 
