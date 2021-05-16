@@ -4,33 +4,33 @@
 
 #include <algorithm>
 #include <iostream>
+#include <map>
 #include <string>
 
 namespace Commands {
-  int parser(std::string command, Player::Player &player) {
-    for (long unsigned int letter = 0; letter < command.size(); letter++) {
-      command[letter] = std::toupper(command[letter]);
+  int parser(std::string input, Player::Player &player) {
+    for (long unsigned int letter = 0; letter < input.size(); letter++) {
+      input[letter] = std::toupper(input[letter]);
     }
+    
+    typedef int (*command_function) (Player::Player&, std::string);
+    std::map<std::string, command_function> commands;
+    commands["ASCEND"] = Commands::ascend;
+    commands["DESCEND"] = Commands::descend;
+    commands["EXIT"] = Commands::exit;
+    commands["LICENSE"] = Commands::license;
+    commands["MAP"] = Commands::map;
+    commands["MOVE"] = Commands::move;
 
-    if (command.substr(0, 3) == "MAP") {
-      Commands::map(player);
-      return 0;
-    } else if (command.substr(0, 4) == "EXIT") {
-      Commands::exit();
-      return 0;
-    } else if (command.substr(0, 7) == "LICENSE") {
-      Commands::license();
-      return 0;
-    } else if (command.substr(0, 4) == "MOVE") {
-      Commands::move(player, command);
-      return 0;
-    } else if (command.substr(0, 7) == "DESCEND") {
-      Commands::descend(player, command);
-    } else if (command.substr(0, 6) == "ASCEND") {
-      Commands::ascend(player, command);
-    } else {
-      std::cout << "Command not recognised." << std::endl;
-      return 1;
+    for (int substring_size = input.size(); substring_size > 0; substring_size--) {
+      if (commands.contains(input.substr(0, substring_size))) {
+        if (input[substring_size] == ' ' || input.substr(0, substring_size) == input) {
+          commands[input.substr(0, substring_size)] (player, input);
+          return 0;
+        }
+      }
     }
+    std::cout << "Command not recognised." << std::endl;
+    return 1;
   }
 }
