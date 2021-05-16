@@ -24,8 +24,10 @@ namespace Commands {
 
     for (int substring_size = input.size(); substring_size > 0; substring_size--) {
       if (commands.contains(input.substr(0, substring_size))) {
-        commands[input.substr(0, substring_size)] (player, input);
-        return 0;
+        if (input[substring_size] == ' ' || input.substr(0, substring_size) == input) {
+          commands[input.substr(0, substring_size)] (player, input);
+          return 0;
+        }
       }
     }
     std::cout << "Command not recognised." << std::endl;
