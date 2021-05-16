@@ -12,7 +12,7 @@ EXECUTABLE	:= text-dungeon.elf
 all: compile link
 
 link: $(BIN)
-	$(CXX) $(OBJ)/*.o -o $(BIN)/$(EXECUTABLE)
+	$(CXX) $(OBJ)/*.o -o $(BIN)/$(EXECUTABLE) $(LIBRARIES)
 
 compile: clean $(SRC) $(OBJ)
 	cd $(OBJ); \
