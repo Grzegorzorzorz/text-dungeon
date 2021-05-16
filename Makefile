@@ -6,7 +6,7 @@ SRC       	:= src
 OBJ					:= obj
 INCLUDE			:= include
 
-LIBRARIES		:= 
+LIBRARIES		:= -lncurses -ltinfo
 EXECUTABLE	:= text-dungeon.elf
 
 all: compile link
