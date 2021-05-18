@@ -30,7 +30,7 @@ namespace Commands {
         }
       }
     }
-    std::cout << "Command not recognised." << std::endl;
+    //std::cout << "Command not recognised." << std::endl;
     return 1;
   }
 }
