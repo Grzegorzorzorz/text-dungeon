@@ -1,4 +1,5 @@
 #include "Commands.hpp"
+#include "Console.hpp"
 #include "Player.hpp"
 #include "Prompt.hpp"
 
@@ -13,27 +14,27 @@ namespace Commands {
       if (player.dungeon->floors[player.floor].getVariant(
           {player.coordinates.x, player.coordinates.y - 1}) != 0) {
             player.coordinates.y--;
-            std::cout << "You went North." << std::endl;
+            Console::output("You went North.\n");
       }
     } else if (command == "EAST") {
       if (player.dungeon->floors[player.floor].getVariant(
           {player.coordinates.x + 1, player.coordinates.y}) != 0) {
             player.coordinates.x++;
-            std::cout << "You went East." << std::endl;
+            Console::output("You went East.\n");
       }
     } else if (command == "SOUTH") {
       if (player.dungeon->floors[player.floor].getVariant(
           {player.coordinates.x, player.coordinates.y + 1}) != 0) {
             player.coordinates.y++;
-            std::cout << "You went South." << std::endl;
+            Console::output("You went South.\n");
       }
     } else if (command == "WEST") {
       if (player.dungeon->floors[player.floor].getVariant(
           {player.coordinates.x - 1, player.coordinates.y}) != 0) {
             player.coordinates.x--;
-            std::cout << "You went West." << std::endl;
+            Console::output("You went West.\n");
       } 
-    } else {std::cout << "move: invalid direction.";}
+    }
     return 0;
   }
 }

@@ -36,7 +36,7 @@ namespace Prompt {
         input[0] = getch();
         
         if (input[0] == '\n') {
-          Console::output(command);
+          Console::output("\n > " + command + "\n\n");
           return command;   
         } else if (input[0] == 127) {
           if (command.size() != 0) {
@@ -45,13 +45,15 @@ namespace Prompt {
             printw(" ");
             command.erase(getcurx(stdscr) - 4);
             command.erase(getcurx(stdscr) - 5);
+            // Add null-termination to string
             command.append("");
             move(Y_COORD + 1, getcurx(stdscr) - 1);
           }
         } else {
-          if (command.size() <= 53)
-          printw(input);
-          command.append(input);
+          if (command.size() < (WIDTH - 4) - 2) {
+            printw(input);
+            command.append(input);
+          }
         }
       }
   }
@@ -67,8 +69,7 @@ namespace Prompt {
 
     if (command_used == false) {
       previous_commands.push_back(command);
-      std::cout << "New command discovered: \x1b[1;30;42m"
-                << command << "\x1b[0m!\n" << std::endl;
+      Console::output("New command discovered: " + command + std::string("\n\n"));
       return 1;
     } else {
       return 0;
