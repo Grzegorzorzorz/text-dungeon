@@ -14,7 +14,7 @@ namespace Mainloop {
     
     while (op_code != 0){
       while (op_code == 1) {
-        Commands::parser(Prompt::getCommand(), player);
+        Commands::parser(Prompt::getInput(" > "), player);
       }
     }
     return 0;

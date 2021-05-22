@@ -16,13 +16,16 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "Console.hpp"
 #include "Dungeon.hpp"
 #include "Mainloop.hpp"
 #include "Player.hpp"
+#include "Prompt.hpp"
 
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <ncurses.h>
 
 int main() {
   int seed = std::time(NULL);
@@ -43,9 +46,14 @@ int main() {
     }
   }
 
+  initscr();
+  cbreak();
+  noecho();
+  Prompt::initialise();
+  Console::initialise();
   Mainloop::setOpCode(1);
   Mainloop::loop(player);
-  
+  endwin();
   delete dungeon;
 
   return 0;

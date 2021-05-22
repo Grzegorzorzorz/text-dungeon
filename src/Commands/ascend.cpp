@@ -1,4 +1,5 @@
 #include "Commands.hpp"
+#include "Console.hpp"
 #include "Player.hpp"
 #include "Prompt.hpp"
 
@@ -20,10 +21,10 @@ namespace Commands {
           }
         }
       } else {
-        std::cout << "\x1b[1;0;31mOne does not simply leave text dungeon!\x1b[0m\n";
+        Console::output("One does not simply leave text dungeon!\n");
       }
     } else {
-      std::cout << "You need a ladder to climb up on.\n";
+      Console::output("You need a ladder to climb up on.\n");
     }
     return 0;
   }

@@ -1,4 +1,5 @@
 #include "Commands.hpp"
+#include "Console.hpp"
 #include "Player.hpp"
 #include "Prompt.hpp"
 
@@ -22,7 +23,7 @@ namespace Commands {
         }
       }
     } else {
-      std::cout << "You need a ladder to climb down on.\n";
+      Console::output("You need a ladder to climb down on.\n");
     }
     return 0;
   }
