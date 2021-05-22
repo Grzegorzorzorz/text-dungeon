@@ -31,9 +31,20 @@ namespace Console {
     ^-- Ideally, splice the line at the most recent space character.
     */
     for (int character = 0; character < output.size(); character++) {
+      bool new_line = false;
       if (output[character] == '\n' || character == WIDTH - 1) {
-        output.erase(0, character);
+        if (output[character] == '\n') {
+          output.erase(0, character);
+          new_line = true;  
+        } else {
+          output.erase(0, character - 1);
+        }
         character = 0;
+        if (output[1] == ' ') {
+          output.erase(1, 1);
+        } else if (new_line == false) {
+          output.insert(1, "-");
+        }
         if (line_buffer.size() < HEIGHT - 2) {
           line_buffer.push_back({""});
         } else {
