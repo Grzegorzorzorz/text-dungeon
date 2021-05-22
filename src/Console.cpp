@@ -18,16 +18,37 @@ namespace Console {
     box(console, 0, 0);
     wprintw(console, "Console Log");
     wrefresh(console);
+
+    line_buffer.push_back({""});
     return 0;
   }
 
   int output(std::string output) {
-    if (line_buffer.size() < HEIGHT - 2) {
-      line_buffer.push_back({output});
-    } else {
-      line_buffer.erase(line_buffer.begin());
-      line_buffer.push_back({output});
+    /*
+    Values that need to be tested:
+    - If a new line is requested.
+    - If a line is too long
+    ^-- Ideally, splice the line at the most recent space character.
+    */
+    for (int character = 0; character < output.size(); character++) {
+      if (output[character] == '\n' || character == WIDTH - 1) {
+        output.erase(0, character);
+        character = 0;
+        if (line_buffer.size() < HEIGHT - 2) {
+          line_buffer.push_back({""});
+        } else {
+          line_buffer.erase(line_buffer.begin());
+          line_buffer.push_back({""});
+        }
+      } else {
+        line_buffer.back().append(1, output[character]);
+      }
     }
+
+    // Line output system: line by line, starting from the bottom.
+    // Creates a nice scroll effect ;)
+    //
+    // Not the lightest function, could do with a rework.
     for (int line = 0; line < line_buffer.size(); line++) {
       move(Y_COORD + (HEIGHT - 2) - line, X_COORD + 1);
       for (int character = 0; character < WIDTH - 2; character++) {
