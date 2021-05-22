@@ -16,6 +16,10 @@ Dungeon Quest is released under the GNU General Public Licence V.3. Please see [
 
 ## Installation
 
+### Requirements
+
+- GNU Make
+- GNU C++ Compiler -- must support c++20 (-std=c++2a flag)
 ### Quick method
 
 `git clone https://github.com/Grzegorzorzorz/text-dungeon && cd ./text-dungeon && make`
