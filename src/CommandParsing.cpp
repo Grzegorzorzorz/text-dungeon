@@ -15,8 +15,7 @@ namespace Commands {
     
     typedef int (*command_function) (Player::Player&, std::string);
     std::map<std::string, command_function> commands;
-    commands["ASCEND"] = Commands::ascend;
-    commands["DESCEND"] = Commands::descend;
+    commands["CLIMB"] = Commands::climb;
     commands["EXIT"] = Commands::exit;
     commands["LICENSE"] = Commands::license;
     commands["MAP"] = Commands::map;
