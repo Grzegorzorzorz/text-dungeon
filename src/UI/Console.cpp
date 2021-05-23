@@ -34,9 +34,20 @@ namespace Console {
     - If a line is too long
     ^-- Ideally, splice the line at the most recent space character.
     */
+
     for (int character = 0; character < output.size(); character++) {
       bool new_line = false;
-      if (output[character] == '\n' || character == WIDTH - 1) {
+      
+      // This code here is pretty unreadable.
+      // I wrote it yesterday and don't understand it.
+      // I'll probably do a refactor later.
+
+      // Check if a new-line has been requested, or if the line is overrunning width.
+      // If so, add a new line to the line buffer, and continue output there.
+      
+      // RIP hyphenation, we won't miss your incorrect implementation.
+      
+      if (output[character] == '\n' || line_buffer.back().size() == WIDTH -2) {
         if (output[character] == '\n') {
           output.erase(0, character);
           new_line = true;  
@@ -46,9 +57,8 @@ namespace Console {
         character = 0;
         if (output[1] == ' ') {
           output.erase(1, 1);
-        } else if (new_line == false) {
-          output.insert(1, "-");
         }
+
         if (line_buffer.size() < HEIGHT - 2) {
           line_buffer.push_back({""});
         } else {
@@ -60,10 +70,11 @@ namespace Console {
       }
     }
 
+
     // Line output system: line by line, starting from the bottom.
     // Creates a nice scroll effect ;)
     //
-    // Not the lightest function, could do with a rework.
+    // Not the lightest, could do with a rework.
     for (int line = 0; line < line_buffer.size(); line++) {
       move(Y_COORD + (HEIGHT - 2) - line, X_COORD + 1);
       for (int character = 0; character < WIDTH - 2; character++) {
