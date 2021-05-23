@@ -59,7 +59,7 @@ namespace Prompt {
             command.append("");
             move(Y_COORD + 1, getcurx(stdscr) - 1);
           }
-        } else {
+        } else if (input[0] >= 0x20 && input[0] <= 0x7E) {
           if (command.size() < (WIDTH - prompt_symbol.size() - 3)) {
             printw(input);
             command.append(input);
