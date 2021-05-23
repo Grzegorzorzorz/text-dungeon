@@ -18,6 +18,11 @@ namespace Dungeon {
     return 0;
   }
 
+  int Floor::setDiscovered(Coordinates coordinates, bool is_discovered) {
+    rooms[coordinates.x][coordinates.y].is_discovered = is_discovered;
+    return 0;
+  }
+
   int Floor::generateLayout() {
     const int MAX_BRANCHES = 4;
     Coordinates branches[MAX_BRANCHES];
