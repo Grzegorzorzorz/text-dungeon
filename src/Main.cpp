@@ -49,8 +49,8 @@ int main() {
   initscr();
   cbreak();
   noecho();
-  Prompt::initialise();
-  Console::initialise();
+  Prompt::initialise(3, COLS / 2, LINES - 3, 0);
+  Console::initialise(LINES - 3, COLS / 2, 0, 0);
   Mainloop::setOpCode(1);
   Mainloop::loop(player);
   endwin();

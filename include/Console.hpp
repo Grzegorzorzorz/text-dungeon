@@ -4,7 +4,7 @@
 #include <string>
 
 namespace Console {
-  int initialise();
+  int initialise(int, int, int, int);
   int output(std::string);
 }
 

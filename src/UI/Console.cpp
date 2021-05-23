@@ -5,14 +5,18 @@
 #include <vector>
 
 namespace Console {
-  static const int HEIGHT = 40;
-  static const int WIDTH = 60;
-  static const int Y_COORD = 0;
-  static const int X_COORD = 0;
+  static int HEIGHT = 40;
+  static int WIDTH = 60;
+  static int Y_COORD = 0;
+  static int X_COORD = 0;
   static WINDOW* console;
   static std::vector<std::string> line_buffer;
 
-  int initialise() {
+  int initialise(int height, int width, int x_coord, int y_coord) {
+    HEIGHT = height;
+    WIDTH = width;
+    X_COORD = x_coord;
+    Y_COORD = y_coord;
     console = newwin(HEIGHT, WIDTH, Y_COORD, X_COORD);
     refresh();
     box(console, 0, 0);

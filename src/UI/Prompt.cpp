@@ -7,18 +7,23 @@
 #include <vector>
 
 namespace Prompt {
-  static const int HEIGHT = 3;
-  static const int WIDTH = 60;
-  static const int Y_COORD = 40;
-  static const int X_COORD = 0;
-  static WINDOW* prompt;
+  static int HEIGHT = 3;
+  static int WIDTH = 60;
+  static int Y_COORD = 40;
+  static int X_COORD = 0;
+  static WINDOW* PROMPT;
 
-  int initialise() {
-    prompt = newwin(HEIGHT, WIDTH, Y_COORD, X_COORD);
+  int initialise(int height, int width, int y_coord, int x_coord) {
+    HEIGHT = height;
+    WIDTH = width;
+    Y_COORD = y_coord;
+    X_COORD = x_coord;
+    
+    PROMPT = newwin(HEIGHT, WIDTH, Y_COORD, X_COORD);
     refresh();
-    box(prompt, 0, 0);
-    wprintw(prompt, "Input");
-    wrefresh(prompt);
+    box(PROMPT, 0, 0);
+    wprintw(PROMPT, "Input");
+    wrefresh(PROMPT);
     return 0;
   }
   

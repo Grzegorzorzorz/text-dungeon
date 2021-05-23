@@ -5,7 +5,7 @@
 #include <string>
 
 namespace Prompt {
-  int initialise();
+  int initialise(int, int, int, int);
   std::string getInput(std::string);
   int firstUsage(std::string);
 }
