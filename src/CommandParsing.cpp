@@ -1,4 +1,5 @@
 #include "Commands.hpp"
+#include "Console.hpp"
 #include "Mainloop.hpp"
 #include "Player.hpp"
 
@@ -15,12 +16,15 @@ namespace Commands {
     
     typedef int (*command_function) (Player::Player&, std::string);
     std::map<std::string, command_function> commands;
-    commands["ASCEND"] = Commands::ascend;
-    commands["DESCEND"] = Commands::descend;
+    commands["CLIMB"] = Commands::climb;
     commands["EXIT"] = Commands::exit;
     commands["LICENSE"] = Commands::license;
     commands["MAP"] = Commands::map;
     commands["MOVE"] = Commands::move;
+    #define DEV_COMMANDS
+    #ifdef DEV_COMMANDS
+    commands["DEV"] = Commands::dev;
+    #endif
 
     for (int substring_size = input.size(); substring_size > 0; substring_size--) {
       if (commands.contains(input.substr(0, substring_size))) {
@@ -30,7 +34,7 @@ namespace Commands {
         }
       }
     }
-    std::cout << "Command not recognised." << std::endl;
+    Console::output("I don't understand that.\n");
     return 1;
   }
 }
