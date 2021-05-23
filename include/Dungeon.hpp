@@ -25,6 +25,7 @@ namespace Dungeon {
       std::vector<Coordinates> *generated_rooms = new std::vector<Coordinates>;
       int getVariant(Coordinates);
       int setVariant(Coordinates, int);
+      int setDiscovered(Coordinates, bool);
       ~Floor();
       int generateLayout();
     private:

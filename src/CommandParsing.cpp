@@ -20,6 +20,10 @@ namespace Commands {
     commands["LICENSE"] = Commands::license;
     commands["MAP"] = Commands::map;
     commands["MOVE"] = Commands::move;
+    #define DEV_COMMANDS
+    #ifdef DEV_COMMANDS
+    commands["DEV"] = Commands::dev;
+    #endif
 
     for (int substring_size = input.size(); substring_size > 0; substring_size--) {
       if (commands.contains(input.substr(0, substring_size))) {
