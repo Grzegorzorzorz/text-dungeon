@@ -9,7 +9,7 @@
 namespace Commands {
   int exit(Player::Player&, std::string) {
     std::string response;
-    Console::output("Really quit? (y/N) > ");
+    Console::output("Are you sure you want to leave? (y/N) > ");
     response = Prompt::getInput(" (y/N) > ");
     Console::output(response + "\n");
 

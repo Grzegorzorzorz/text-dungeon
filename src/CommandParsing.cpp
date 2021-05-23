@@ -1,4 +1,5 @@
 #include "Commands.hpp"
+#include "Console.hpp"
 #include "Mainloop.hpp"
 #include "Player.hpp"
 
@@ -33,7 +34,7 @@ namespace Commands {
         }
       }
     }
-    //std::cout << "Command not recognised." << std::endl;
+    Console::output("I don't understand that.\n");
     return 1;
   }
 }
