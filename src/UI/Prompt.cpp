@@ -27,7 +27,7 @@ namespace Prompt {
     return 0;
   }
   
-  std::string getInput(std::string user_prompt) {
+  std::string getInput(std::string prompt_symbol) {
       std::string command;
       char input[2];
       input[1] = '\0';
@@ -36,7 +36,13 @@ namespace Prompt {
             printw(" ");
       }
       move(Y_COORD + 1, X_COORD + 1);
-      printw(" > ");
+      // Convert string to const char * array to display prompt symbol.
+      char *user_prompt = new char[prompt_symbol.size() + 1];
+      std::copy(prompt_symbol.begin(), prompt_symbol.end(), user_prompt);
+      user_prompt[prompt_symbol.size()] = '\0';
+      printw(user_prompt);
+      delete[] user_prompt;
+
       while (true) {
         input[0] = getch();
         
@@ -47,14 +53,14 @@ namespace Prompt {
             command.erase(command.size());
             move(Y_COORD + 1, getcurx(stdscr) - 1);
             printw(" ");
-            command.erase(getcurx(stdscr) - 4);
-            command.erase(getcurx(stdscr) - 5);
+            command.erase(getcurx(stdscr) - (prompt_symbol.size() + 1));
+            command.erase(getcurx(stdscr) - (prompt_symbol.size() + 2));
             // Add null-termination to string
             command.append("");
             move(Y_COORD + 1, getcurx(stdscr) - 1);
           }
         } else {
-          if (command.size() < (WIDTH - 4) - 2) {
+          if (command.size() < (WIDTH - prompt_symbol.size() - 3)) {
             printw(input);
             command.append(input);
           }

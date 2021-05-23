@@ -9,8 +9,9 @@
 namespace Commands {
   int exit(Player::Player&, std::string) {
     std::string response;
-    Console::output("Really quit? (y/N)");
+    Console::output("Really quit? (y/N) > ");
     response = Prompt::getInput(" (y/N) > ");
+    Console::output(response + "\n");
 
     if (response[0] == 'Y' || response[0] == 'y') {
       Mainloop::setOpCode(0);
