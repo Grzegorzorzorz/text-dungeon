@@ -36,7 +36,6 @@ namespace Prompt {
         input[0] = getch();
         
         if (input[0] == '\n') {
-          Console::output("\n > " + command + "\n\n");
           return command;   
         } else if (input[0] == 127) {
           if (command.size() != 0) {

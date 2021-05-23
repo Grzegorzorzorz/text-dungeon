@@ -1,4 +1,5 @@
 #include "Commands.hpp"
+#include "Console.hpp"
 #include "Player.hpp"
 #include "Prompt.hpp"
 #include "Mainloop.hpp"
@@ -14,7 +15,10 @@ namespace Mainloop {
     
     while (op_code != 0){
       while (op_code == 1) {
-        Commands::parser(Prompt::getInput(" > "), player);
+        std::string command = "";
+        command = Prompt::getInput(" > ");
+        Console::output("\n > " + command + "\n\n");
+        Commands::parser(command, player);
       }
     }
     return 0;
