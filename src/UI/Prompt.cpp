@@ -28,44 +28,55 @@ namespace Prompt {
   }
   
   std::string getInput(std::string prompt_symbol) {
-      std::string command;
-      char input[2];
-      input[1] = '\0';
-      move(Y_COORD + 1, X_COORD + 1);
-      for (int character = 1; character < WIDTH - 1; character++) {
-            printw(" ");
-      }
-      move(Y_COORD + 1, X_COORD + 1);
-      // Convert string to const char * array to display prompt symbol.
-      char *user_prompt = new char[prompt_symbol.size() + 1];
-      std::copy(prompt_symbol.begin(), prompt_symbol.end(), user_prompt);
-      user_prompt[prompt_symbol.size()] = '\0';
-      printw(user_prompt);
-      delete[] user_prompt;
+    // Clear the prompt.
+    move(Y_COORD + 1, X_COORD + 1);
+    for (int character = 1; character < WIDTH - 1; character++) {
+      printw(" ");
+    }
+    move(Y_COORD + 1, X_COORD + 1);
+    
+    // Display prompt symbol.
+    char *printable_prompt = new char[prompt_symbol.size() + 1];
+    std::copy(prompt_symbol.begin(), prompt_symbol.end(), printable_prompt);
+    printable_prompt[prompt_symbol.size()] = '\0';
+    printw(printable_prompt);
+    delete[] printable_prompt;
 
-      while (true) {
-        input[0] = getch();
+    std::string user_input = "";
+    char last_char[2];
+    last_char[1] = '\0';
+    
+    bool do_input = true;
+    while (do_input == true) {
+      last_char[0] = getch();
+
+      switch (last_char[0]) {
+        case 0x0A: // New line
+          do_input = false;
+          break;
         
-        if (input[0] == '\n') {
-          return command;   
-        } else if (input[0] == 127) {
-          if (command.size() != 0) {
-            command.erase(command.size());
+        case 0x7F: // Backspace
+          if (user_input.size() != 0) {
+            user_input.erase(user_input.size() - 1);
+            user_input.append("");
+
             move(Y_COORD + 1, getcurx(stdscr) - 1);
             printw(" ");
-            command.erase(getcurx(stdscr) - (prompt_symbol.size() + 1));
-            command.erase(getcurx(stdscr) - (prompt_symbol.size() + 2));
-            // Add null-termination to string
-            command.append("");
             move(Y_COORD + 1, getcurx(stdscr) - 1);
           }
-        } else if (input[0] >= 0x20 && input[0] <= 0x7E) {
-          if (command.size() < (WIDTH - prompt_symbol.size() - 3)) {
-            printw(input);
-            command.append(input);
+          break;
+
+        default:
+          if (last_char[0] >= 0x20 && last_char[0] <= 0x7E) {
+            if (user_input.size() < WIDTH - prompt_symbol.size() - 3) {
+              printw(last_char);
+              user_input.append(last_char);
+            }
           }
-        }
+          break;
       }
+    }
+    return user_input;  
   }
 
   int firstUsage(std::string command) {

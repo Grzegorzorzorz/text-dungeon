@@ -39,9 +39,8 @@ namespace Commands {
         }
       }
       map_line.append("\n");
-      Console::output(map_line);
-      map_line.clear();
     }
+    Console::output(map_line);
     return 0;
   }
 }
