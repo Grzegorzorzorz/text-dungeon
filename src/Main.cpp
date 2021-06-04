@@ -18,6 +18,7 @@
 
 #include "Console.hpp"
 #include "Dungeon.hpp"
+#include "Items.hpp"
 #include "Mainloop.hpp"
 #include "Player.hpp"
 #include "Prompt.hpp"
@@ -27,13 +28,14 @@
 #include <iostream>
 #include <ncurses.h>
 
-int main() {
+int main(int argc,char** argv) {
   int seed = std::time(NULL);
   std::srand(seed);
   std::cout << "Seed: " << seed << std::endl;
 
   // TODO: Move the world and player definitions into a game 
   //       initiation function.
+  Items::load_items(argv[0]);
   Dungeon::Dungeon *dungeon = new Dungeon::Dungeon;
   Player::Player player;  
   player.dungeon = dungeon;

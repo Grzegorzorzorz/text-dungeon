@@ -1,0 +1,11 @@
+{
+  "key" : "weapon_nothing",
+  "name" : "Fists",
+  "type" : "weapon",
+  "subtype" : "nothing",
+  "attributes" : {
+    "damage" : 2,
+    "accuracy" : 95,
+    "critical" : 7
+  }
+}

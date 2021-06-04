@@ -1,0 +1,11 @@
+{
+  "key" : "basic_sword",
+  "name" : "Basic Sword",
+  "type" : "weapon",
+  "subtype" : "blade",
+  "attributes" : {
+    "damage" : 5,
+    "accuracy" : 90,
+    "critical" : 3
+  }
+}
