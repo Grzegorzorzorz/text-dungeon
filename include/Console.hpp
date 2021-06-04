@@ -4,8 +4,8 @@
 #include <string>
 
 namespace Console {
-  int initialise(int, int, int, int);
-  int output(std::string);
+  int initialise(int height, int width, int x_coord, int y_coord);
+  int output(std::string output, bool load_buffer = false);
 }
 
 #endif
