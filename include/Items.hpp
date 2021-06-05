@@ -12,7 +12,13 @@ namespace Items {
     std::map<std::string, int> attributes;
   };
 
+  struct Slot {
+    Item item;
+    int quantity;
+  };
+
   int load_items(std::string executable_path);
+  Item lookup_item(std::string item_name);
 }
 
 #endif

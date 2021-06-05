@@ -10,9 +10,17 @@
 #include <vector>
 
 namespace Items {
-  std::map <std::string, Item> dictionary;
+  static std::map <std::string, Item> dictionary;
   
   int load_items(std::string executable_path) {
+    // Load the fall back item file.
+    dictionary["nothing"] = Item {
+      "", // Name
+      "nothing", // Type
+      "nothing", // Subtype
+      {} // Attributes 
+    };
+
     // Isolate the items directory with an absolute path.
     std::string item_directory = executable_path;
     item_directory = std::filesystem::absolute(item_directory);
@@ -52,5 +60,12 @@ namespace Items {
       }
     }
     return 0;
+  }
+
+  Item lookup_item(std::string item_name) {
+    if (dictionary.contains(item_name)) {
+      return dictionary[item_name];
+    }
+  return dictionary["nothing"];
   }
 }
