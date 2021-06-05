@@ -1,8 +1,8 @@
 {
-  "key" : "weapon_nothing",
+  "key" : "fists",
   "name" : "Fists",
   "type" : "weapon",
-  "subtype" : "nothing",
+  "subtype" : "blunt",
   "attributes" : {
     "damage" : 2,
     "accuracy" : 95,
