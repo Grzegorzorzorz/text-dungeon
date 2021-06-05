@@ -1,0 +1,9 @@
+{
+  "key" : "cloth_tunic",
+  "name" : "Cloth Tunic",
+  "type" : "armour",
+  "subtype" : "clothes",
+  "attributes" : {
+    "defense" : 2
+  }
+}
