@@ -8,13 +8,10 @@ namespace Player {
     level = 1;
     health = 20;
     coordinates = {4, 4};
-    equipped_weapon = Items::lookup_item("fists");
-    equipped_armour = Items::lookup_item("cloth_tunic");
-    for (int y = 0; y < 4; y++) {
-      for (int x = 0; x < 5; x++) {
-        inventory[x][y].item = Items::lookup_item("nothing");
-        inventory[x][y].quantity = 0;
-      }
+    equipped_weapon = Items::get_item("fists");
+    for (int slot = 0; slot < 3; slot++) {
+      inventory[slot].item = Items::get_item("nothing");
+      inventory[slot].quantity = 0;
     }
   }
 

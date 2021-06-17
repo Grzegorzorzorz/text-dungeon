@@ -62,7 +62,7 @@ namespace Items {
     return 0;
   }
 
-  Item lookup_item(std::string item_name) {
+  Item get_item(std::string item_name) {
     if (dictionary.contains(item_name)) {
       return dictionary[item_name];
     }
